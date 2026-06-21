@@ -1,5 +1,15 @@
-public class Main {
+import model.Dataset;
+public class main {
+
     public static void main(String[] args) {
-        System.out.println("Welcome to DataSentinel");
+
+    Dataset ds = new Dataset(100,20);
+    System.out.println(ds.getrows());
+    System.out.println(ds.getcolumns());
+
+
+
+
+
     }
 }
