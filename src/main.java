@@ -2,6 +2,9 @@ import model.Dataset;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.BufferedReader;
+
+
 public class main {
 
     public static void main(String[] args) {
@@ -12,10 +15,16 @@ public class main {
 
 try {
       File file = new File("sample.csv");
-      FileReader reader =new FileReader(file);
+      FileReader fr= new FileReader(file);
+      BufferedReader br =new BufferedReader(fr);
       System.out.println("file opened");
 
-      reader.close();
+     String line  = br.readLine() ;
+     System.out.println(
+       line
+     );
+
+      fr.close();
 
 
 
