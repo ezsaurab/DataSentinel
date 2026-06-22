@@ -1,5 +1,6 @@
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class main {
 
@@ -22,7 +23,9 @@ public class main {
                 String[] parts = line.split(",");
 
                 rows.add(parts);
-                int missingCount = 0;
+                
+        }    // its for counting missing values 
+             int missingCount = 0;
 
             for(String[] row : rows) {
 
@@ -32,18 +35,37 @@ public class main {
 
                  missingCount++;
 
-        }
 
     }
 
 }
 
-System.out.println("Missing Values: " + missingCount);
-                System.out.println("Rows: " + rows.size());
-
-               System.out.println("Columns: " + rows.get(0).length);
+                
 
             }
+            System.out.println("Missing Values: " + missingCount);
+                System.out.println("Rows: " + rows.size());
+
+                System.out.println("Columns: " + rows.get(0).length);
+
+
+            int duplicateCount = 0;
+
+         for(int i = 1; i < rows.size(); i++) {
+
+         for(int j = i + 1; j < rows.size(); j++) {
+
+          if(Arrays.equals(rows.get(i), rows.get(j))) {
+
+            duplicateCount++;
+
+         }
+
+    }
+
+}
+
+System.out.println("Duplicates: " + duplicateCount);
 
             br.close();
 
