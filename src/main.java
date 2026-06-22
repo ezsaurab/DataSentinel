@@ -22,6 +22,23 @@ public class main {
                 String[] parts = line.split(",");
 
                 rows.add(parts);
+                int missingCount = 0;
+
+            for(String[] row : rows) {
+
+             for(String value : row) {
+
+             if(value.isEmpty()) {
+
+                 missingCount++;
+
+        }
+
+    }
+
+}
+
+System.out.println("Missing Values: " + missingCount);
                 System.out.println("Rows: " + rows.size());
 
                System.out.println("Columns: " + rows.get(0).length);
