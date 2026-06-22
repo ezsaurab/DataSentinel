@@ -1,48 +1,48 @@
-import model.Dataset;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
-import java.io.BufferedReader;
-
+import java.io.*;
+import java.util.ArrayList;
 
 public class main {
 
     public static void main(String[] args) {
 
-    // Dataset ds = new Dataset(100,20);
-    // System.out.println(ds.getrows());
-    // System.out.println(ds.getcolumns());
+        try {
 
-try {
-      File file = new File("sample.csv");
-      FileReader fr= new FileReader(file);
-      BufferedReader br =new BufferedReader(fr);
-      System.out.println("file opened");
+            File file = new File("sample.csv");
 
-     String line  = br.readLine() ;
-     System.out.println(
-       line
-     );
+            FileReader fr = new FileReader(file);
 
-      fr.close();
+            BufferedReader br = new BufferedReader(fr);
 
+            ArrayList<String[]> rows = new ArrayList<>();
 
+            String line;
 
-       
-    //  System.out.println(file.getAbsolutePath());
-    //  System.out.println(file.exists());
+            while((line = br.readLine()) != null) {
 
+                String[] parts = line.split(",");
 
-    }
-    catch(IOException e){
+                rows.add(parts);
+                System.out.println("Rows: " + rows.size());
 
+               System.out.println("Columns: " + rows.get(0).length);
 
-        System.out.println("Error in opening file:");
-    }
-    
-    
-    
-    
+            }
+
+            br.close();
+
+            System.out.println(rows.get(0)[0]);
+            System.out.println(rows.get(0)[1]);
+
+            System.out.println(rows.get(1)[0]);
+            System.out.println(rows.get(1)[1]);
+
+        }
+        catch(IOException e) {
+
+            System.out.println("Error reading file");
+
+        }
+
     }
 
 }
