@@ -1,7 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 
-public class Main {
+public class main {
 
     public static void main(String[] args) {
 
@@ -38,4 +38,22 @@ public class Main {
             );
 
             System.out.println(
-         
+                "Missing Values: " +
+                DataProfiler.countMissingValues(rows)
+            );
+
+            System.out.println(
+                "Duplicates: " +
+                DataProfiler.countDuplicates(rows)
+            );
+
+        }
+        catch(IOException e) {
+
+            System.out.println("Error reading file");
+
+        }
+
+    }
+
+}

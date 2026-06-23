@@ -15,27 +15,35 @@ public class DataProfiler {
 
     }
 
-    public static int countMissingValues(ArrayList<String[]> rows) {
+   public static int countMissingValues(ArrayList<String[]> rows) {
 
-        int missingCount = 0;
+    int missingCount = 0;
 
-        for(String[] row : rows) {
+    int expectedColumns = rows.get(0).length;
 
-            for(String value : row) {
+    for(String[] row : rows) {
 
-                if(value.isEmpty()) {
+        for(String value : row) {
 
-                    missingCount++;
+            if(value.isEmpty()) {
 
-                }
+                missingCount++;
 
             }
 
         }
 
-        return missingCount;
+        if(row.length < expectedColumns) {
+
+            missingCount += (expectedColumns - row.length);
+
+        }
 
     }
+
+    return missingCount;
+
+}
 
     public static int countDuplicates(ArrayList<String[]> rows) {
 
