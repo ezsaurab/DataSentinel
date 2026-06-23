@@ -38,22 +38,4 @@ public class Main {
             );
 
             System.out.println(
-                "Missing Values: " +
-                DataProfiler.countMissingValues(rows)
-            );
-
-            System.out.println(
-                "Duplicates: " +
-                DataProfiler.countDuplicates(rows)
-            );
-
-        }
-        catch(IOException e) {
-
-            System.out.println("Error reading file");
-
-        }
-
-    }
-
-}
+         
