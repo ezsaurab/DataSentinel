@@ -27,6 +27,8 @@ public class main {
 
             br.close();
 
+            System.out.println("========== DATASET PROFILE ==========");
+
             System.out.println(
                 "Rows: " +
                 DataProfiler.countRows(rows)
@@ -47,10 +49,28 @@ public class main {
                 DataProfiler.countDuplicates(rows)
             );
 
-        }
-        catch(IOException e) {
+            System.out.println();
 
-            System.out.println("Error reading file");
+            System.out.println("===== COLUMN COMPLETENESS REPORT =====");
+
+            DataProfiler.columnCompleteness(rows);
+
+            System.out.println();
+
+            System.out.println("===== DATA TYPE DETECTION =====");
+
+            DataProfiler.detectColumnTypes(rows);
+
+            System.out.println();
+
+            System.out.println("========= PROFILE COMPLETE =========");
+
+        }
+        catch (IOException e) {
+
+            System.out.println(
+                "Error reading file: " + e.getMessage()
+            );
 
         }
 
