@@ -7,25 +7,12 @@ public class main {
 
         try {
 
-            File file = new File("sample.csv");
+            ArrayList<String[]> rows =
+             CSVLoader.loadCSV(
+                "sample.csv"
+             );
 
-            FileReader fr = new FileReader(file);
-
-            BufferedReader br = new BufferedReader(fr);
-
-            ArrayList<String[]> rows = new ArrayList<>();
-
-            String line;
-
-            while ((line = br.readLine()) != null) {
-
-                String[] parts = line.split(",");
-
-                rows.add(parts);
-
-            }
-
-            br.close();
+            
 
             System.out.println("========== DATASET PROFILE ==========");
 
@@ -64,6 +51,25 @@ public class main {
             System.out.println();
 
             System.out.println("========= PROFILE COMPLETE =========");
+
+            System.out.println();
+
+             System.out.println("===== DATA QUALITY SCORES =====");
+
+             System.out.printf(
+                 "Completeness Score: %.2f%%\n",
+                 DataProfiler.completenessScore(rows)
+             );
+
+             System.out.printf(
+                 "Uniqueness Score: %.2f%%\n",
+                             DataProfiler.uniquenessScore(rows)
+             );
+
+             System.out.printf(
+                 "Overall Quality Score: %.2f%%\n",
+                 DataProfiler.overallQualityScore(rows)
+             );
 
         }
         catch(IOException e) {
