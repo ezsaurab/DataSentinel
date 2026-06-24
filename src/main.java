@@ -66,10 +66,11 @@ public class main {
             System.out.println("========= PROFILE COMPLETE =========");
 
         }
-        catch (IOException e) {
+        catch(IOException e) {
 
             System.out.println(
-                "Error reading file: " + e.getMessage()
+                "Error reading file: " +
+                e.getMessage()
             );
 
         }

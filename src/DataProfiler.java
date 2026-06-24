@@ -21,11 +21,11 @@ public class DataProfiler {
 
         int expectedColumns = rows.get(0).length;
 
-        for (String[] row : rows) {
+        for(String[] row : rows) {
 
-            for (String value : row) {
+            for(String value : row) {
 
-                if (value.isEmpty()) {
+                if(value.isEmpty()) {
 
                     missingCount++;
 
@@ -33,9 +33,10 @@ public class DataProfiler {
 
             }
 
-            if (row.length < expectedColumns) {
+            if(row.length < expectedColumns) {
 
-                missingCount += (expectedColumns - row.length);
+                missingCount +=
+                    (expectedColumns - row.length);
 
             }
 
@@ -49,11 +50,14 @@ public class DataProfiler {
 
         int duplicateCount = 0;
 
-        for (int i = 1; i < rows.size(); i++) {
+        for(int i = 1; i < rows.size(); i++) {
 
-            for (int j = i + 1; j < rows.size(); j++) {
+            for(int j = i + 1; j < rows.size(); j++) {
 
-                if (Arrays.equals(rows.get(i), rows.get(j))) {
+                if(Arrays.equals(
+                        rows.get(i),
+                        rows.get(j)
+                )) {
 
                     duplicateCount++;
 
@@ -67,24 +71,33 @@ public class DataProfiler {
 
     }
 
-    public static void columnCompleteness(ArrayList<String[]> rows) {
+    public static void columnCompleteness(
+            ArrayList<String[]> rows
+    ) {
 
         String[] header = rows.get(0);
 
-        for (int col = 0; col < header.length; col++) {
+        for(int col = 0;
+            col < header.length;
+            col++) {
 
             int missingCount = 0;
 
-            for (int row = 1; row < rows.size(); row++) {
+            for(int row = 1;
+                row < rows.size();
+                row++) {
 
-                String[] currentRow = rows.get(row);
+                String[] currentRow =
+                    rows.get(row);
 
-                if (col >= currentRow.length) {
+                if(col >= currentRow.length) {
 
                     missingCount++;
 
                 }
-                else if (currentRow[col].isEmpty()) {
+                else if(
+                    currentRow[col].isEmpty()
+                ) {
 
                     missingCount++;
 
@@ -93,14 +106,18 @@ public class DataProfiler {
             }
 
             System.out.println(
-                header[col] + " -> Missing: " + missingCount
+                header[col]
+                + " -> Missing: "
+                + missingCount
             );
 
         }
 
     }
 
-    public static boolean isInteger(String value) {
+    public static boolean isInteger(
+            String value
+    ) {
 
         try {
 
@@ -109,7 +126,7 @@ public class DataProfiler {
             return true;
 
         }
-        catch (NumberFormatException e) {
+        catch(NumberFormatException e) {
 
             return false;
 
@@ -117,53 +134,119 @@ public class DataProfiler {
 
     }
 
-    public static void detectColumnTypes(ArrayList<String[]> rows) {
+    public static boolean isDouble(
+            String value
+    ) {
+
+        try {
+
+            Double.parseDouble(value);
+
+            return true;
+
+        }
+        catch(NumberFormatException e) {
+
+            return false;
+
+        }
+
+    }
+
+    public static boolean isBoolean(
+            String value
+    ) {
+
+        return value.equalsIgnoreCase("true")
+            || value.equalsIgnoreCase("false");
+
+    }
+
+    public static void detectColumnTypes(
+            ArrayList<String[]> rows
+    ) {
 
         String[] header = rows.get(0);
 
-        for (int col = 0; col < header.length; col++) {
+        for(int col = 0;
+            col < header.length;
+            col++) {
 
             boolean allIntegers = true;
+            boolean allDoubles = true;
+            boolean allBooleans = true;
 
-            for (int row = 1; row < rows.size(); row++) {
+            for(int row = 1;
+                row < rows.size();
+                row++) {
 
-                String[] currentRow = rows.get(row);
+                String[] currentRow =
+                    rows.get(row);
 
-                if (col >= currentRow.length) {
-
-                    continue;
-
-                }
-
-                String value = currentRow[col];
-
-                if (value.isEmpty()) {
+                if(col >= currentRow.length) {
 
                     continue;
 
                 }
 
-                if (!isInteger(value)) {
+                String value =
+                    currentRow[col];
+
+                if(value.isEmpty()) {
+
+                    continue;
+
+                }
+
+                if(!isInteger(value)) {
 
                     allIntegers = false;
 
-                    break;
+                }
+
+                if(!isDouble(value)) {
+
+                    allDoubles = false;
+
+                }
+
+                if(!isBoolean(value)) {
+
+                    allBooleans = false;
 
                 }
 
             }
 
-            if (allIntegers) {
+            if(allIntegers) {
 
                 System.out.println(
-                    header[col] + " -> Integer"
+                    header[col]
+                    + " -> Integer"
+                );
+
+            }
+            else if(allDoubles) {
+
+                System.out.println(
+                    header[col]
+                    + " -> Double"
+                );
+
+            }
+            else if(allBooleans) {
+
+                System.out.println(
+                    header[col]
+                    + " -> Boolean"
                 );
 
             }
             else {
 
                 System.out.println(
-                    header[col] + " -> String"
+                    header[col]
+                    + " -> String"
                 );
 
             }
