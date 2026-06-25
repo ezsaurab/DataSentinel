@@ -1,29 +1,25 @@
 import java.io.*;
 import java.util.ArrayList;
+import model.Dataset;
 
 public class CSVLoader {
 
-    public static ArrayList<String[]> loadCSV(
-            String filePath)
+    public static Dataset loadCSV(String filePath)
             throws IOException {
 
         File file = new File(filePath);
 
-        FileReader fr =
-            new FileReader(file);
+        FileReader fr = new FileReader(file);
 
-        BufferedReader br =
-            new BufferedReader(fr);
+        BufferedReader br = new BufferedReader(fr);
 
-        ArrayList<String[]> rows =
-            new ArrayList<>();
+        ArrayList<String[]> rows = new ArrayList<>();
 
         String line;
 
-        while((line = br.readLine()) != null) {
+        while ((line = br.readLine()) != null) {
 
-            String[] parts =
-                line.split(",");
+            String[] parts = line.split(",");
 
             rows.add(parts);
 
@@ -31,7 +27,9 @@ public class CSVLoader {
 
         br.close();
 
-        return rows;
+        Dataset dataset = new Dataset(rows);
+
+        return dataset;
 
     }
 

@@ -1,26 +1,21 @@
 
 package model;
+import java.util.ArrayList;
 
-public class Dataset{
+public class Dataset {
 
-    private int rows;
-    private int columns;
+    private ArrayList<String[]> data;
 
-   public Dataset(int rows,int columns){
+    public Dataset(ArrayList<String[]> data) {
 
-    this.rows=rows;
-    this.columns=columns;
+        this.data = data;
 
     }
 
-  public int getrows(){
+    public ArrayList<String[]> getData() {
 
-    return rows;
+        return data;
 
-  }
- public int getcolumns(){
+    }
 
-    return columns;
-
- }
 }
